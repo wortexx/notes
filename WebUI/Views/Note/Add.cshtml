@@ -1,0 +1,21 @@
+﻿@model Domain.Commands.Notes.CreateNote
+@using Microsoft.Web.Mvc
+@Html.BeginForm(){
+    <fieldset>
+        <legend>Add Note</legend>
+        @Html.HiddenFor(x=>x.Id)
+        <div class="control-group">
+            <label class="control-label" for="@Html.IdFor(x => x.Title)">Title</label>
+            <div class="controls">
+                @Html.TextBoxFor(x => x.Title, new { @class = "input-xlarge" })
+                @*<p class="help-block">Supporting help text</p>*@
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label" for="@Html.IdFor(x => x.Text)">Text</label>
+            <div>
+                @Html.TextAreaFor(x => x.Text)
+            </div>
+        </div>
+  </fieldset>
+}

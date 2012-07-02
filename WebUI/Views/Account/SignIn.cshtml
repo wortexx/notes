@@ -1,0 +1,80 @@
+﻿@using WebUI.Controllers
+@using MvcContrib;
+
+@{
+    ViewBag.Title = "Log On";
+}
+
+@section styles{
+    <link href="@Url.Content("~/Content/openid.css")" rel="stylesheet" type="text/css" />
+}
+@section scripts{
+    <script type="text/javascript">
+        var providers = {
+            myopenid: { action: '@(Url.Action<AccountController>( x=> x.OpenId("")))', url: 'http://myopenid.com' },
+            //@*twitter: { action: '@(Url.Action<AccountController>(x=> x.OAuth()))'},*@
+            facebook: { action: '@(Url.Action<AccountController>( x=> x.OpenId("")))', url: 'http://facebook.com' },
+            google: { action: '@(Url.Action<AccountController>( x=> x.OpenId("")))', url: 'http://www.google.com/accounts/o8/id' },
+            yahoo: { action: '@(Url.Action<AccountController>( x=> x.OpenId("")))', url: 'http://yahoo.com' }
+        };
+        
+        $("#openid").click(function () {
+            toggleOther();
+        });
+        $("#signin").click(function () {
+            $("#openid-form").submit();
+        });
+
+        $("li").not("#openid").click(function () {
+            $("#other").hide(500);
+            isHidden = true;
+            var id = $(this).attr("id");
+            var provider = providers[id];
+            if (provider.action != undefined) {
+                $("#openid-form").attr("action", provider.action);
+            }
+            if (provider.url != undefined) {
+                $("#openIdUrl").val(provider.url);
+            }
+            $("#openid-form").submit();
+        });
+
+        var isHidden = true;
+        function toggleOther() {
+            if (isHidden) {
+                $("#other").slideDown(500);
+            } else {
+                $("#other").slideUp(500);
+            }
+            isHidden = !isHidden;
+        }
+</script>
+}
+<div align="center">
+<div>
+    <img src="@Url.Content("~/images/blocknote.png")" alt="Notes"/>
+</div>
+@Html.BeginForm("SignIn", "Account", FormMethod.Post, new{id ="openid-form"}){
+        <fieldset>
+            <legend>
+                <p>Registered users can <strong>view and add private notes</strong>. 
+                <p>Sign in using one of the providers below.</p>
+            </legend>
+            <div id="openid-providers" class="blue">
+            <ul>
+                <li id="openid"></li>
+                <li id="myopenid"></li>
+                <li id="twitter"></li>
+                <li id="google"></li>
+                <li id="yahoo"></li>
+            </ul>
+        </div>
+        <div id="other" class="hide">
+            <h3>Your OpendID Provider</h3>
+            <input name="openIdUrl" id="openIdUrl" type="text" />
+            <a id="signin">Sign In »</a>
+        </div>
+        <input name="returnUrl" id="returnUrl" type="hidden" />
+        </fieldset>
+}
+</div>

@@ -1,0 +1,47 @@
+﻿@using DotNetOpenAuth.Mvc
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"  />
+    <title>@ViewBag.Title</title>
+    <link href="@Url.Content("~/Content/bootstrap.min.css")" rel="stylesheet" type="text/css" />
+    @RenderSection("styles")
+    <script src="@Url.Content("~/Scripts/jquery-1.7.2.min.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Scripts/modernizr-2.5.3.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Scripts/bootstrap.min.js")" type="text/javascript"></script>
+    @RenderSection("scripts")
+</head>
+    <body>
+        <div class="navbar">
+            <div class="navbar-inner">
+                <div class="container">
+                    <a class="brand" href="#">St. Notes</a>
+                    <div class="nav-collapse">
+                        <ul class="nav pull-right">
+                            <li>@Html.Partial("_LogOnPartial")</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="page">
+            <header>
+                @*<div id="title">
+                <h1>My MVC Application</h1>
+            </div>
+            
+            <nav>
+                <ul id="menu">
+                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                    <li>@Html.ActionLink("About", "About", "Home")</li>
+                </ul>
+            </nav>*@
+            </header>
+            <section id="main">
+                @RenderBody()
+            </section>
+            <footer>
+            </footer>
+        </div>
+    </body>
+</html>

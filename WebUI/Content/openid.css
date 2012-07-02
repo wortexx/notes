@@ -1,0 +1,78 @@
+﻿/* OpenId
+----------------------------------------------------------*/
+#openid-wrap p
+{
+    font-size: 18px;
+    text-align: center;
+    margin: 0 120px 10px;
+    line-height: 24px;
+}
+#openid-wrap div#other
+{
+    display: none;
+    text-align: center;
+    margin: 10px 40px;
+    padding: 10px;
+    color: #000;
+    background-color: #ddd;
+    border: 1px solid #888;
+    font-size: 18px;
+}
+#openid-wrap div#other h3
+{
+    color: #333;
+    font-weight: bold;
+    margin: 0 0 3px 0;
+}
+#openid-wrap input
+{
+    border: 2px solid #fba424;
+    height: 36px;
+    width: 500px;
+}
+#openid-wrap div#other a
+{
+    background-color: #333;
+    color: #eee;
+    border: 1px solid #666;
+    padding: 10px 15px;
+    display: inline-block;
+}
+#openid-wrap div#other a:hover
+{
+    background-color: #222;
+    color: #fff;
+    text-decoration: none;
+    cursor: pointer;
+}
+#openid-providers
+{
+    overflow: auto;
+    text-align: center;
+}
+#openid-providers ul
+{
+    display: inline-block;
+    list-style: none;
+}
+#openid-providers li
+{
+    margin: 8px;
+    padding: 0;
+    float: left;
+    width: 150px;
+    height: 50px;
+    background: transparent url('../images/openid_sprite.png') no-repeat 0 0;
+}
+li#openid       { background-position: 0 0; }
+li#myopenid     { background-position: 0 -50px; }
+li#twitter      { background-position: 0 -100px; }
+li#facebook     { background-position: 0 -150px; }
+li#google       { background-position: 0 -200px; }
+li#yahoo        { background-position: 0 -250px; }
+li#openid:hover       { background-position: -150px 0; cursor: pointer; }
+li#myopenid:hover     { background-position: -150px -50px; cursor: pointer; }
+li#twitter:hover      { background-position: -150px -100px; cursor: pointer; }
+li#facebook:hover     { background-position: -150px -150px; cursor: pointer; }
+li#google:hover       { background-position: -150px -200px; cursor: pointer; }
+li#yahoo:hover        { background-position: -150px -250px; cursor: pointer; }

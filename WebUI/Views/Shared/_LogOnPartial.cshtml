@@ -1,0 +1,10 @@
+﻿@using Microsoft.Web.Mvc;
+@using WebUI.Controllers
+
+@if(Request.IsAuthenticated) {
+    <text>Welcome <strong>@User.Identity.Name</strong>!
+    @(Html.ActionLink<AccountController>(x => x.SignOut(),"Sign Out"))</text>
+}
+else {
+    @(Html.ActionLink<AccountController>(x => x.SignIn(), "Sign In"))
+}
