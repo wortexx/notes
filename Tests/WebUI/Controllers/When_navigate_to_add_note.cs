@@ -1,11 +1,9 @@
 ﻿using System;
 using System.Web.Mvc;
 using Domain.Commands.Notes;
-using Domain.Design.Commands;
 using NUnit.Framework;
 using Primitives.Notes;
 using Should.Fluent;
-using Tests.Stubs;
 using WebUI.Controllers;
 
 namespace Tests.WebUI.Controllers
@@ -18,8 +16,7 @@ namespace Tests.WebUI.Controllers
         [TestFixtureSetUp]
         public void SetUp()
         {
-            ICommandSender commands = new CommandServiceStub();
-            var controller = new NoteController(commands);
+            var controller = new NoteController();
 
             _result = controller.Add();
         }
@@ -36,14 +33,14 @@ namespace Tests.WebUI.Controllers
             (((ViewResult) _result).Model).Should().Be.OfType<CreateNote>();
                 
             var model = ((ViewResult) _result).Model;
-            Assert.AreNotEqual(Guid.Empty, ((CreateNote)model).Id);
+            Assert.AreNotEqual(Guid.Empty, ((CreateNote)model).NoteId);
         }
 
         [Test]
         public void Result_model_should_be_initialized()
         {
             var model = ((CreateNote) ((ViewResult) _result).Model);
-            model.Id.Should().Not.Equal(Guid.NewGuid());
+            model.NoteId.Should().Not.Equal(Guid.NewGuid());
             model.Color.Should().Equal(NoteColor.Yellow);
         }
     }

@@ -114,6 +114,8 @@
       <HintPath>..\packages\Newtonsoft.Json.3.5.8\lib\35\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="System.Data.Entity" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
     <Reference Include="System.Web.Mvc, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="System.Web.WebPages, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="System.Web.Helpers, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
@@ -148,6 +150,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="CommandWebService.svc" />
     <Content Include="Content\bootstrap-responsive.css" />
     <Content Include="Content\bootstrap-responsive.min.css" />
     <Content Include="Content\bootstrap.css" />
@@ -267,6 +270,14 @@
     <ProjectReference Include="..\Infrastructure\Infrastructure.csproj">
       <Project>{68503348-1A2F-4FA1-8B8F-12319DC2799E}</Project>
       <Name>Infrastructure</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Ncqrs.CommandService.Contracts\Ncqrs.CommandService.Contracts.csproj">
+      <Project>{76062319-4F5D-4055-9D1A-5680DD2DA882}</Project>
+      <Name>Ncqrs.CommandService.Contracts</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Ncqrs.CommandService\Ncqrs.CommandService.csproj">
+      <Project>{9CBAEAFE-9265-47BA-82C5-5E0774CBF2C5}</Project>
+      <Name>Ncqrs.CommandService</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

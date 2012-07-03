@@ -3,7 +3,7 @@
 @Html.BeginForm(){
     <fieldset>
         <legend>Add Note</legend>
-        @Html.HiddenFor(x=>x.Id)
+        @Html.HiddenFor(x=>x.NoteId)
         <div class="control-group">
             <label class="control-label" for="@Html.IdFor(x => x.Title)">Title</label>
             <div class="controls">

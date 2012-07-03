@@ -1,37 +1,44 @@
 ﻿using System;
+using System.ServiceModel;
 using System.Web.Mvc;
 using Domain.Commands.Notes;
-using Domain.Design.Commands;
+using Ncqrs.CommandService;
+using Ncqrs.CommandService.Contracts;
+using MvcContrib;
 
 namespace WebUI.Controllers
 {
     [Authorize]
     public class NoteController : Controller
     {
-        private readonly ICommandSender _bus;
+        private static ChannelFactory<ICommandWebServiceClient> _channelFactory;
 
-        public NoteController(ICommandSender bus)
+        static NoteController()
         {
-            _bus = bus;
+            _channelFactory = new ChannelFactory<ICommandWebServiceClient>("CommandWebServiceClient");
         }
 
         public ActionResult Add()
         {
             return View(new CreateNote
                             {
-                                Id = Guid.NewGuid()
+                                NoteId = Guid.NewGuid()
                             });
         }
 
         [HttpPost]
-        public void Add(CreateNote cmd)
+        public ActionResult Add(CreateNote cmd)
         {
-            _bus.Send(cmd);
+            ChannelHelper.Use(_channelFactory.CreateChannel(), client => client.Execute(new ExecuteRequest(cmd)));
+
+            return this.RedirectToAction<HomeController>(x => x.Index());
         }
 
-        public void Delete(DeleteNote cmd)
+        public ActionResult Delete(DeleteNote cmd)
         {
-             _bus.Send(cmd);
+            ChannelHelper.Use(_channelFactory.CreateChannel(), client => client.Execute(new ExecuteRequest(cmd)));
+
+            return this.RedirectToAction<HomeController>(x => x.Index());
         } 
 
     }
